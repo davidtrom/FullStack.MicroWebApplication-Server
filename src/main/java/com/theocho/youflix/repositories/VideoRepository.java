@@ -1,4 +1,4 @@
-package java.com.theocho.youflix.repositories;
+package com.theocho.youflix.repositories;
 
 public class VideoRepository {
 }

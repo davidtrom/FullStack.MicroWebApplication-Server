@@ -1,4 +1,5 @@
-package java.com.theocho.youflix.controllers;
+package com.theocho.youflix.controllers;
+
 
 public class VideoController {
 }

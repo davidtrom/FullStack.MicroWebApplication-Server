@@ -1,4 +1,4 @@
-package java.com.theocho.youflix.services;
+package com.theocho.youflix.services;
 
 public class VideoService {
 }

@@ -7,14 +7,18 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="youflix" />
+        <module name="FullStack.MicroWebApplication-Server" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="FullStack.MicroWebApplication-Server" target="1.8" />
+      <module name="untitled" target="1.5" />
       <module name="youflix" target="1.8" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="FullStack.MicroWebApplication-Server" options="-parameters" />
       <module name="youflix" options="-parameters" />
     </option>
   </component>
