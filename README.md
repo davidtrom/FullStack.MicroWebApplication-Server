@@ -28,40 +28,6 @@
 
 
 
-
-## Project Topics
-
-### TCP Application
-
-#### User Stories to Fulfill  
-* As a client, (not logged in) I
-    * can send messages to a _peer_.
-	* can view default channels
-	* can view all accessible channels
-	* can view messages live as they are received
-
-<hr>
-
-
-
-
-
-### Blog Application
-
-#### User Stories to Fulfill  
-* As a client, (not logged in) I
-    * can create new blog posts
-        * A blog post can consist of images and text
-	* can view list of all blog posts
-    * can view blog posts filtered by blog-tag
-	* can view new blog posts upon refreshing the DOM
-
-<hr>
-
-
-
-
-
 ### Video Library Application
 
 #### User Stories to Fulfill  
@@ -69,16 +35,25 @@
     * can upload new videos
 	* can view list of all videos
 	* can post simple text-comments on a video
-
-
-
-
-
-### Money Management Application
-
-#### User Stories to Fulfill  
-* As a client, (not logged in) I
-	* can create new accounts
-	* deposit money to each account
-	* withdrawl money from each account
-	* transfer money to and from any 2 accounts
+	
+* Stretch Goals (draft)
+    * Users
+    	* age filter
+	* targeted ads?
+    * if logged in:
+	* playlists
+	* save favorite videos
+	* create a channel
+	* history
+	* and remove from history (incl remove from sorting algorithm)
+    * upload videos
+	* including video descriptions
+	* comments/replies
+    * If not logged in:
+	* dark mode
+	* watch videos
+	* search videos
+	* videos related to current video
+	* replay/shuffle/autoplay/play/pause/skip/fast forward/rewind
+	* like/dislike/report
+    * mobile app
