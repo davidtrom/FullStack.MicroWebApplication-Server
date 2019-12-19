@@ -39,21 +39,21 @@
 * Stretch Goals (draft)
     * Users
     	* age filter
-	* targeted ads?
+    	* targeted ads?
     * if logged in:
-	* playlists
-	* save favorite videos
-	* create a channel
-	* history
-	* and remove from history (incl remove from sorting algorithm)
+    	* playlists
+    	* save favorite videos
+    	* create a channel
+    	* history
+    	* remove from history (incl remove from sorting algorithm)
     * upload videos
-	* including video descriptions
-	* comments/replies
+    	* including video descriptions
+    	* comments/replies
     * If not logged in:
-	* dark mode
-	* watch videos
-	* search videos
-	* videos related to current video
-	* replay/shuffle/autoplay/play/pause/skip/fast forward/rewind
-	* like/dislike/report
+    	* dark mode
+    	* watch videos
+    	* search videos
+    	* videos related to current video
+    	* replay/shuffle/autoplay/play/pause/skip/fast forward/rewind
+    	* like/dislike/report
     * mobile app
