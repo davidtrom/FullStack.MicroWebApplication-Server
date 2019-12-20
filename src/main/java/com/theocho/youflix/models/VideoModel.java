@@ -12,17 +12,18 @@ public class VideoModel {
     private String id;
     private String fileName;
     private String fileType;
-    @Lob
-    private byte[] data;
+    private String url;
+    private String thumbnailUrl;
 
     public VideoModel(){
 
     }
 
-    public VideoModel(String fileName, String fileType, byte[] data){
+    public VideoModel(String fileName, String fileType, String url, String thumbnailUrl){
         this.fileName = fileName;
         this.fileType = fileType;
-        this.data = data;
+        this.url = url;
+        this.thumbnailUrl = thumbnailUrl;
     }
 
     public String getId() {
@@ -49,11 +50,19 @@ public class VideoModel {
         this.fileType = fileType;
     }
 
-    public byte[] getData() {
-        return data;
+    public String getUrl() {
+        return url;
     }
 
-    public void setData(byte[] data) {
-        this.data = data;
+    public void setUrl(String url) {
+        this.url = url;
+    }
+
+    public String getThumbnailUrl() {
+        return thumbnailUrl;
+    }
+
+    public void setThumbnailUrl(String thumbnailUrl) {
+        this.thumbnailUrl = thumbnailUrl;
     }
 }

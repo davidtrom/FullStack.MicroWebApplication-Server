@@ -19,7 +19,7 @@ import java.io.IOException;
 import java.util.Date;
 
 @Service
-public class AmazonClient {
+public class VideoServices {
 
     private AmazonS3 s3client;
 
@@ -74,4 +74,5 @@ public class AmazonClient {
         s3client.deleteObject(new DeleteObjectRequest(bucketName + "/", fileName));
         return "Successfully deleted";
     }
+
 }
