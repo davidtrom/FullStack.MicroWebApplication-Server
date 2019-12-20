@@ -1,30 +1,28 @@
 package com.theocho.youflix.controllers;
 
-import com.theocho.youflix.models.VideoModel;
-import com.theocho.youflix.services.AmazonClient;
+import com.theocho.youflix.services.VideoServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 @RestController
 @RequestMapping("/storage/")
-public class BucketController {
+public class VideoController {
 
-    private AmazonClient amazonClient;
+    private VideoServices videoServices;
 
     @Autowired
-    BucketController(AmazonClient amazonClient) {
-        this.amazonClient = amazonClient;
+    VideoController(VideoServices videoServices) {
+        this.videoServices = videoServices;
     }
 
     @PostMapping("/uploadFile")
     public String uploadFile(@RequestPart(value = "file") MultipartFile file) {
-        return this.amazonClient.uploadFile(file);
+        return this.videoServices.uploadFile(file);
     }
 
     @DeleteMapping("/deleteFile")
     public String deleteFile(@RequestPart(value = "url") String fileUrl) {
-        return this.amazonClient.deleteFileFromS3Bucket(fileUrl);
+        return this.videoServices.deleteFileFromS3Bucket(fileUrl);
     }
 }
