@@ -5,32 +5,32 @@ import javax.persistence.*;
 
 @Entity
 //@Table("videos")
-public class VideoModel {
+public class Video {
 
     @Id
     @GeneratedValue
-    private String id;
+    private Long id;
     private String fileName;
     private String fileType;
     private String url;
     private String thumbnailUrl;
 
-    public VideoModel(){
+    public Video(){
 
     }
 
-    public VideoModel(String fileName, String fileType, String url, String thumbnailUrl){
+    public Video(String fileName, String fileType, String url, String thumbnailUrl){
         this.fileName = fileName;
         this.fileType = fileType;
         this.url = url;
         this.thumbnailUrl = thumbnailUrl;
     }
 
-    public String getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
