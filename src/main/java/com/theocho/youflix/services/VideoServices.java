@@ -19,7 +19,7 @@ import java.io.IOException;
 import java.util.Date;
 
 @Service
-public class AmazonClient {
+public class VideoServices {
 
     private AmazonS3 s3client;
 
