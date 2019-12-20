@@ -1,6 +1,8 @@
 package com.theocho.youflix.services;
 
 
+import com.theocho.youflix.exceptions.FileStorageException;
+import com.theocho.youflix.exceptions.MyFileNotFoundException;
 import com.theocho.youflix.models.VideoModel;
 import com.theocho.youflix.repositories.VideoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
