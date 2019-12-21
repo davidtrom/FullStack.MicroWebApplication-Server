@@ -1,5 +1,0 @@
-java/com/theocho/youflix/YouflixApplication.class
-java/com/theocho/youflix/services/VideoService.class
-java/com/theocho/youflix/controllers/VideoController.class
-java/com/theocho/youflix/models/VideoModel.class
-java/com/theocho/youflix/repositories/VideoRepository.class
