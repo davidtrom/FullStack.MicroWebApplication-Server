@@ -8,10 +8,14 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.annotation.Resource;
+import java.util.Optional;
+
 @RestController
-@RequestMapping("/storage/")
+@RequestMapping("/labtest")
 public class VideoController {
 
+    @Resource
     private VideoServices videoServices;
 
     @Autowired
@@ -20,8 +24,8 @@ public class VideoController {
     }
 
     @GetMapping("/videos/{id}")
-    public ResponseEntity<Video> show(@PathVariable Long id) {
-        return new ResponseEntity<Video>(videoServices.show(id), HttpStatus.OK);
+    public ResponseEntity<Optional<Video>> show(@PathVariable @RequestBody Long id) {
+        return new ResponseEntity<>(videoServices.show(id), HttpStatus.OK);
     }
 
     @PostMapping("/uploadFile")
@@ -32,5 +36,11 @@ public class VideoController {
     @DeleteMapping("/deleteFile")
     public String deleteFile(@RequestPart(value = "url") String fileUrl) {
         return this.videoServices.deleteFileFromS3Bucket(fileUrl);
+    }
+
+    @PostMapping("/video/makevideo")
+    public ResponseEntity createVideo(@RequestBody Video video) {
+        videoServices.createVideoRecord(video);
+        return new ResponseEntity(HttpStatus.CREATED);
     }
 }

@@ -10,20 +10,20 @@ public class Video {
     @Id
     @GeneratedValue
     private Long id;
+    private String videoEtag;
     private String fileName;
-    private String fileType;
-    private String url;
-    private String thumbnailUrl;
+    private String videoURL;
+    private String thumbnailURL;
 
     public Video(){
 
     }
 
-    public Video(String fileName, String fileType, String url, String thumbnailUrl){
+    public Video(String videoEtag, String fileName, String videoURL, String thumbnailURL){
+        this.videoEtag = videoEtag;
         this.fileName = fileName;
-        this.fileType = fileType;
-        this.url = url;
-        this.thumbnailUrl = thumbnailUrl;
+        this.videoURL = videoURL;
+        this.thumbnailURL = thumbnailURL;
     }
 
     public Long getId() {
@@ -34,6 +34,14 @@ public class Video {
         this.id = id;
     }
 
+    public String getVideoEtag() {
+        return videoEtag;
+    }
+
+    public void setVideoEtag(String videoEtag) {
+        this.videoEtag = videoEtag;
+    }
+
     public String getFileName() {
         return fileName;
     }
@@ -42,27 +50,19 @@ public class Video {
         this.fileName = fileName;
     }
 
-    public String getFileType() {
-        return fileType;
+    public String getVideoURL() {
+        return videoURL;
     }
 
-    public void setFileType(String fileType) {
-        this.fileType = fileType;
+    public void setVideoURL(String url) {
+        this.videoURL = url;
     }
 
-    public String getUrl() {
-        return url;
+    public String getThumbnailURL() {
+        return thumbnailURL;
     }
 
-    public void setUrl(String url) {
-        this.url = url;
-    }
-
-    public String getThumbnailUrl() {
-        return thumbnailUrl;
-    }
-
-    public void setThumbnailUrl(String thumbnailUrl) {
-        this.thumbnailUrl = thumbnailUrl;
+    public void setThumbnailURL(String thumbnailURL) {
+        this.thumbnailURL = thumbnailURL;
     }
 }
