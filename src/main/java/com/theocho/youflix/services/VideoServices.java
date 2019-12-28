@@ -10,8 +10,10 @@ import com.amazonaws.services.s3.model.DeleteObjectRequest;
 import com.amazonaws.services.s3.model.PutObjectRequest;
 import com.theocho.youflix.models.Video;
 import com.theocho.youflix.repositories.VideoRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.PostConstruct;
@@ -19,9 +21,11 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Date;
+import java.util.Optional;
 
 @Service
 public class VideoServices {
+    @Autowired
     private VideoRepository videoRepository;
     private AmazonS3 s3client;
 
@@ -77,8 +81,12 @@ public class VideoServices {
         return "Successfully deleted";
     }
 
-    public Video show(Long id) {
-        return videoRepository.findById(id).get();
+    public Optional<Video> show(Long id) {
+        return videoRepository.findById(id);
+    }
+
+    public void createVideoRecord(Video video) {
+        videoRepository.save(video);
     }
 
 }
