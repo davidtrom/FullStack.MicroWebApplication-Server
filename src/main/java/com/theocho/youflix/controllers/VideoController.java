@@ -38,7 +38,7 @@ public class VideoController {
         return this.videoServices.deleteFileFromS3Bucket(fileUrl);
     }
 
-    @PostMapping("/video/makevideo")
+    @PostMapping("/makeVideo")
     public ResponseEntity createVideo(@RequestBody Video video) {
         videoServices.createVideoRecord(video);
         return new ResponseEntity(HttpStatus.CREATED);
