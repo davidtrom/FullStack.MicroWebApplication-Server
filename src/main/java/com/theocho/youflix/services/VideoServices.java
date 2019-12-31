@@ -27,8 +27,7 @@ import java.util.Optional;
 @Service
 public class VideoServices {
 
-    @Autowired
-    private VideoRepository videoRepository;
+    private final VideoRepository videoRepository;
     private AmazonS3 s3client;
 
     @Value("${amazonProperties.endpointUrl}")
@@ -39,6 +38,11 @@ public class VideoServices {
     private String accessKey;
     @Value("${amazonProperties.secretKey}")
     private String secretKey;
+
+    public VideoServices(VideoRepository videoRepository) {
+        this.videoRepository = videoRepository;
+    }
+
     @PostConstruct
     private void initializeAmazon() {
         AWSCredentials credentials = new BasicAWSCredentials(this.accessKey, this.secretKey);
