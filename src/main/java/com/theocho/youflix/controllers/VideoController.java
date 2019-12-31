@@ -21,7 +21,7 @@ public class VideoController {
 
     @GetMapping("/videos/{id}")
     public ResponseEntity<Video> show(@PathVariable Long id) {
-        return new ResponseEntity<Video>(videoServices.show(id), HttpStatus.OK);
+        return new ResponseEntity<>(videoServices.show(id), HttpStatus.OK);
     }
 
     @PostMapping("/uploadFile")
