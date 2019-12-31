@@ -27,7 +27,8 @@ import java.util.Optional;
 @Service
 public class VideoServices {
 
-    private final VideoRepository videoRepository;
+    @Autowired
+    private VideoRepository videoRepository;
     private AmazonS3 s3client;
 
     @Value("${amazonProperties.endpointUrl}")
