@@ -28,24 +28,24 @@ public class VideoController {
         return "Hello World";
     }
 
-//    @GetMapping("/videos/{id}")
-//    public ResponseEntity<Optional<Video>> show(@PathVariable @RequestBody Long id) {
-//        return new ResponseEntity<>(videoServices.show(id), HttpStatus.OK);
-//    }
-//
-//    @PostMapping("/uploadFile")
-//    public String uploadFile(@RequestPart(value = "file") MultipartFile file) {
-//        return this.videoServices.uploadFile(file);
-//    }
-//
-//    @DeleteMapping("/deleteFile")
-//    public String deleteFile(@RequestPart(value = "url") String fileUrl) {
-//        return this.videoServices.deleteFileFromS3Bucket(fileUrl);
-//    }
-//
-//    @PostMapping("/makeVideo")
-//    public ResponseEntity createVideo(@RequestBody Video video) {
-//        videoServices.createVideoRecord(video);
-//        return new ResponseEntity(HttpStatus.CREATED);
-//    }
+    @GetMapping("/videos/{id}")
+    public ResponseEntity<Optional<Video>> show(@PathVariable @RequestBody Long id) {
+        return new ResponseEntity<>(videoServices.show(id), HttpStatus.OK);
+    }
+
+    @PostMapping("/uploadFile")
+    public String uploadFile(@RequestPart(value = "file") MultipartFile file) {
+        return this.videoServices.uploadFile(file);
+    }
+
+    @DeleteMapping("/deleteFile")
+    public String deleteFile(@RequestPart(value = "url") String fileUrl) {
+        return this.videoServices.deleteFileFromS3Bucket(fileUrl);
+    }
+
+    @PostMapping("/makeVideo")
+    public ResponseEntity createVideo(@RequestBody Video video) {
+        videoServices.createVideoRecord(video);
+        return new ResponseEntity(HttpStatus.CREATED);
+    }
 }
