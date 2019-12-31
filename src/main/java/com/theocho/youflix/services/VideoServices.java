@@ -27,7 +27,7 @@ import java.util.Optional;
 @Service
 public class VideoServices {
 
-    @Autowired
+   
     private VideoRepository videoRepository;
     private AmazonS3 s3client;
 
