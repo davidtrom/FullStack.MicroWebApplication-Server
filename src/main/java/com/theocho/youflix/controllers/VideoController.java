@@ -12,7 +12,8 @@ import javax.annotation.Resource;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/labtest")
+//@RequestMapping("/labtest")
+@RequestMapping("/")
 public class VideoController {
 
     @Resource
