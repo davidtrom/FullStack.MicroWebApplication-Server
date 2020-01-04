@@ -12,7 +12,7 @@ import javax.annotation.Resource;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/labtest")
+@RequestMapping("/")
 public class VideoController {
 
     @Resource
@@ -21,6 +21,11 @@ public class VideoController {
     @Autowired
     VideoController(VideoServices videoServices) {
         this.videoServices = videoServices;
+    }
+
+    @GetMapping("/")
+    String hello(){
+        return "Hello World";
     }
 
     @GetMapping("/videos/{id}")

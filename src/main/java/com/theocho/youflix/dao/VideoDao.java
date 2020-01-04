@@ -9,6 +9,6 @@ public interface VideoDao {
     void insertVideo(Video video);
     void updateVideo(Video video);
     void executeUpdateVideo(Video video);
-    public void deleteVideo(Video video);
+    void deleteVideo(Video video);
 }
 
