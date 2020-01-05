@@ -35,7 +35,7 @@ public class VideoServicesTest {
 
     @Before
     public void setUp() throws Exception {
-        testVideo = new Video("sample Etag", "sample file name", "sample video url", "sample thumbnail url");
+        testVideo = new Video("sample title", "sample url", "sample description");
         testVideo.setId(1L);
         this.videoController = new VideoController(videoServices);
     }
@@ -48,7 +48,7 @@ public class VideoServicesTest {
     public void create_a_video_Test() {
         // Given
         HttpStatus expected = HttpStatus.CREATED;
-        Video expectedVideo = new Video(null, null, null, null);
+        Video expectedVideo = new Video(null, null, null);
         BDDMockito
                 .given(videoServices.create(testVideo))
                 .willReturn(testVideo);
@@ -64,7 +64,7 @@ public class VideoServicesTest {
     @Test
     public void show_one_video_Test() {
         // given
-        Video expectedVideo = new Video("sample Etag", "sample file name", "sample video url", "sample thumbnail url");
+        Video expectedVideo = new Video("sample Etag", "sample file name", "sample video url");
         testVideo.setId(1L);
 //        when(videoRepository.findById(1L)).thenReturn(java.util.Optional.of(expectedVideo));
         // when

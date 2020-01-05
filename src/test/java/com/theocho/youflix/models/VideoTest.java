@@ -36,7 +36,7 @@ public class VideoTest {
     @Before
     public void setUp() throws Exception {
 //        MockitoAnnotations.initMocks(this);
-        testVideo = new Video("sample Etag", "sample file name", "sample video url", "sample thumbnail url");
+        testVideo = new Video("sample Title", "sample description", "sample video url");
         nullaryVideo = new Video();
     }
 
@@ -63,10 +63,9 @@ public class VideoTest {
     public void testCreateJson() throws JsonProcessingException{
         String expected = "{" +
                 "\"id\":null," +
-                "\"videoEtag\":\"sample Etag\"," +
-                "\"fileName\":\"sample file name\"," +
-                "\"videoURL\":\"sample video url\"," +
-                "\"thumbnailURL\":\"sample thumbnail url\"" +
+                "\"title\":\"sample Title\"," +
+                "\"description\":\"sample description\"," +
+                "\"url\":\"sample video url\"," +
             "}";
         ObjectMapper jsonWriter = new ObjectMapper();
         String json = jsonWriter.writeValueAsString(testVideo);
@@ -81,54 +80,42 @@ public class VideoTest {
     }
 
     @Test
-    public void getVideoEtag() {
-        String expected = "sample Etag";
-        Assert.assertEquals(expected, testVideo.getVideoEtag());
+    public void getTitle() {
+        String expected = "sample Title";
+        Assert.assertEquals(expected, testVideo.getTitle());
     }
 
     @Test
-    public void setVideoEtag() {
-        String expected = "new Etag";
-        nullaryVideo.setVideoEtag(expected);
-        Assert.assertEquals(expected, nullaryVideo.getVideoEtag());
+    public void setTitle() {
+        String expected = "new Title";
+        nullaryVideo.setTitle(expected);
+        Assert.assertEquals(expected, nullaryVideo.getTitle());
     }
 
     @Test
-    public void getFileName() {
-        String expected = "sample file name";
-        Assert.assertEquals(expected, testVideo.getFileName());
+    public void getDescription() {
+        String expected = "sample description";
+        Assert.assertEquals(expected, testVideo.getDescription());
     }
 
     @Test
     public void setFileName() {
-        String expected = "new file name";
-        nullaryVideo.setFileName(expected);
-        Assert.assertEquals(expected, nullaryVideo.getFileName());
+        String expected = "sample description";
+        nullaryVideo.setDescription(expected);
+        Assert.assertEquals(expected, nullaryVideo.getDescription());
     }
 
     @Test
     public void getVideoURL() {
         String expected = "sample video url";
-        Assert.assertEquals(expected, testVideo.getVideoURL());
+        Assert.assertEquals(expected, testVideo.getUrl());
     }
 
     @Test
     public void setVideoURL() {
         String expected = "new video url";
-        nullaryVideo.setVideoURL(expected);
-        Assert.assertEquals(expected, nullaryVideo.getVideoURL());    }
-
-    @Test
-    public void getThumbnailURL() {
-        String expected = "sample thumbnail url";
-        Assert.assertEquals(expected, testVideo.getThumbnailURL());
-    }
-
-    @Test
-    public void setThumbnailURL() {
-        String expected = "new thumbnail url";
-        nullaryVideo.setThumbnailURL(expected);
-        Assert.assertEquals(expected, nullaryVideo.getThumbnailURL());
+        nullaryVideo.setUrl(expected);
+        Assert.assertEquals(expected, nullaryVideo.getUrl());
     }
 
 }
