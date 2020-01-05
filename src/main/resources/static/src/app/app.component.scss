@@ -1,0 +1,28 @@
+.menuoptions a {
+  padding: 5px 10px;
+  text-decoration: none;
+  display: inline-block;
+  background-color: #eee;
+  border-radius: 4px;
+}
+.menuoptions a:visited, a:link {
+  color: #334953;
+}
+.menuoptions a:hover {
+  color: #039be5;
+  background-color: #cfd8dc;
+}
+.menuoptions a.active {
+  color: #039be5;
+}
+
+.youflixlogo{
+  width: 160px;
+  height: 40px;
+  background-color: #eee;
+  border-radius: 7px;
+}
+
+#footer{
+  height: 4%;
+}
