@@ -1,6 +1,7 @@
 package com.theocho.youflix.controllers;
 
 import com.theocho.youflix.models.Video;
+import com.theocho.youflix.repositories.VideoRepository;
 import com.theocho.youflix.services.VideoServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -15,7 +16,11 @@ import javax.annotation.Resource;
 @RequestMapping("/labtest")
 public class VideoController {
 
+    @Autowired
     private VideoServices videoServices;
+
+    @Autowired
+    private VideoRepository videoRepository;
 
     @Autowired
     public VideoController(VideoServices videoServices) {

@@ -3,12 +3,15 @@ package com.theocho.youflix.services;
 import com.theocho.youflix.YouflixApplication;
 import com.theocho.youflix.controllers.VideoController;
 import com.theocho.youflix.models.Video;
+import com.theocho.youflix.repositories.VideoRepository;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.BDDMockito;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.HttpStatus;
@@ -23,13 +26,13 @@ import static org.junit.Assert.*;
 @ContextConfiguration(classes = YouflixApplication.class)
 public class VideoServicesTest {
 
-    @MockBean
+    @InjectMocks
     private VideoServices videoServices;
 
     private VideoController videoController;
 
-//    @Mock
-//    private VideoRepository videoRepository;
+    @Mock
+    private VideoRepository videoRepository;
 
     Video testVideo;
 
@@ -37,6 +40,7 @@ public class VideoServicesTest {
     public void setUp() throws Exception {
         testVideo = new Video("sample Etag", "sample file name", "sample video url", "sample thumbnail url");
         testVideo.setId(1L);
+//        videoServices = new VideoServices(videoRepository);
         this.videoController = new VideoController(videoServices);
     }
 
@@ -48,29 +52,35 @@ public class VideoServicesTest {
     public void create_a_video_Test() {
         // Given
         HttpStatus expected = HttpStatus.CREATED;
-        Video expectedVideo = new Video(null, null, null, null);
+//        Video expectedVideo = new Video(null, null, null, null);
         BDDMockito
                 .given(videoServices.create(testVideo))
                 .willReturn(testVideo);
         // When
-        ResponseEntity<Video> response = videoController.createVideo(expectedVideo);
+        ResponseEntity<Video> response = videoController.createVideo(testVideo);
         HttpStatus actual = response.getStatusCode();
         Video actualVideo = response.getBody();
         // Then
         Assert.assertEquals(expected,actual);
-        Assert.assertEquals(expectedVideo, actualVideo);
+        Assert.assertEquals(testVideo, actualVideo);
     }
 
     @Test
     public void show_one_video_Test() {
         // given
-        Video expectedVideo = new Video("sample Etag", "sample file name", "sample video url", "sample thumbnail url");
-        testVideo.setId(1L);
-//        when(videoRepository.findById(1L)).thenReturn(java.util.Optional.of(expectedVideo));
+        Long testVideoId = 1L;
+        HttpStatus expectedHttpStatus = HttpStatus.OK;
+        Video expectedVideo = new Video(null, null, null, null);
+        BDDMockito
+                .given(videoServices.showOne(testVideoId))
+                .willReturn(expectedVideo);
         // when
-
+        ResponseEntity<Video> response = videoController.show(testVideoId);
+        HttpStatus actualHttpStatus = response.getStatusCode();
+        Video actualVideo = response.getBody();
         // then
-        assertEquals(expectedVideo, videoServices.showOne(1L));
+        Assert.assertEquals(expectedHttpStatus,actualHttpStatus);
+//        Assert.assertEquals(expectedVideo, actualVideo);
     }
 
     @Test
