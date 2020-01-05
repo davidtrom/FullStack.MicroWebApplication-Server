@@ -8,7 +8,7 @@ import javax.persistence.*;
 public class Video {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String videoEtag;
     private String fileName;
