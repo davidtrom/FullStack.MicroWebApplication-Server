@@ -13,7 +13,7 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.annotation.Resource;
 
 @Controller
-@RequestMapping("/labtest")
+@RequestMapping("/")
 public class VideoController {
 
     @Autowired
