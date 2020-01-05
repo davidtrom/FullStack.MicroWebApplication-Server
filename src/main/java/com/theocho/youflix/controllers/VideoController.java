@@ -5,42 +5,46 @@ import com.theocho.youflix.services.VideoServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.Resource;
-import java.util.Optional;
 
-@RestController
+@Controller
 @RequestMapping("/labtest")
 public class VideoController {
 
-    @Resource
     private VideoServices videoServices;
 
     @Autowired
-    VideoController(VideoServices videoServices) {
+    public VideoController(VideoServices videoServices) {
         this.videoServices = videoServices;
     }
 
-    @GetMapping("/videos/{id}")
-    public ResponseEntity<Optional<Video>> show(@PathVariable @RequestBody Long id) {
-        return new ResponseEntity<>(videoServices.show(id), HttpStatus.OK);
-    }
-
-    @PostMapping("/uploadFile")
-    public String uploadFile(@RequestPart(value = "file") MultipartFile file) {
-        return this.videoServices.uploadFile(file);
-    }
-
-    @DeleteMapping("/deleteFile")
-    public String deleteFile(@RequestPart(value = "url") String fileUrl) {
-        return this.videoServices.deleteFileFromS3Bucket(fileUrl);
-    }
-
     @PostMapping("/makeVideo")
-    public ResponseEntity createVideo(@RequestBody Video video) {
-        videoServices.createVideoRecord(video);
-        return new ResponseEntity(HttpStatus.CREATED);
+    public ResponseEntity<Video> createVideo(@RequestBody Video video) {
+        return new ResponseEntity(videoServices.create(video), HttpStatus.CREATED);
     }
+
+    @GetMapping("/videos/{id}")
+    public ResponseEntity<Video> show(@PathVariable Long id) {
+        return new ResponseEntity<>(videoServices.showOne(id), HttpStatus.OK);
+    }
+
+    @GetMapping("/videos")
+    public ResponseEntity<Iterable<Video>> showAllVideos(){
+        return new ResponseEntity<>(videoServices.showAll(),HttpStatus.OK);
+    }
+
+//    @PostMapping("/uploadFile")
+//    public String uploadFile(@RequestPart(value = "file") MultipartFile file) {
+//        return this.videoServices.uploadFile(file);
+//    }
+//
+//    @DeleteMapping("/deleteFile")
+//    public String deleteFile(@RequestPart(value = "url") String fileUrl) {
+//        return this.videoServices.deleteFileFromS3Bucket(fileUrl);
+//    }
+
 }
