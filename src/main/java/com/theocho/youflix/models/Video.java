@@ -11,8 +11,8 @@ public class Video {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String title;
-    private String url;
     private String description;
+    private String url;
 
     public Video(){
     }
@@ -39,6 +39,14 @@ public class Video {
         this.title = title;
     }
 
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
     public String getUrl() {
         return url;
     }
@@ -47,11 +55,4 @@ public class Video {
         this.url = url;
     }
 
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
 }
