@@ -4,7 +4,7 @@ package com.theocho.youflix.models;
 import javax.persistence.*;
 
 @Entity
-//@Table("videos")
+//@Table(name ="videos")
 public class Video {
 
     @Id

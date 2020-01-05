@@ -20,7 +20,7 @@ public class VideoDaoImplementation implements VideoDao {
     public VideoDaoImplementation(NamedParameterJdbcTemplate template) {
         this.template = template;
     }
-    NamedParameterJdbcTemplate template;
+    private NamedParameterJdbcTemplate template;
 
 
     @Override
@@ -46,11 +46,11 @@ public class VideoDaoImplementation implements VideoDao {
         final String sql = "UPDATE videos SET videoEtag=:videoEtag, fileName=:fileName, videoUrl=:videoUrl, thumbnailUrl=:thumbnailUrl WHERE videoID=:videoID";
         KeyHolder holder = new GeneratedKeyHolder();
         SqlParameterSource param = new MapSqlParameterSource()
-                .addValue("employeeId", video.getId())
-                .addValue("employeeName", video.getVideoEtag())
-                .addValue("employeeEmail", video.getFileName())
-                .addValue("employeeEmail", video.getVideoURL())
-                .addValue("employeeAddress", video.getThumbnailURL());
+                .addValue("videoID", video.getId())
+                .addValue("videoEtag", video.getVideoEtag())
+                .addValue("fileName", video.getFileName())
+                .addValue("videoUrl", video.getVideoURL())
+                .addValue("thumbnailUrl", video.getThumbnailURL());
         template.update(sql,param, holder);
     }
 
@@ -58,19 +58,12 @@ public class VideoDaoImplementation implements VideoDao {
     public void executeUpdateVideo(Video video) {
         final String sql = "UPDATE videos SET videoEtag=:videoEtag, fileName=:fileName, videoUrl=:videoUrl, thumbnailUrl=:thumbnailUrl WHERE videoID=:videoID";
         Map<String,Object> map=new HashMap<String,Object>();
-        map.put("employeeId", video.getId());
-        map.put("employeeName", video.getVideoEtag());
-        map.put("employeeEmail", video.getFileName());
-        map.put("employeeEmail", video.getVideoURL());
-        map.put("employeeAddress", video.getThumbnailURL());
-        template.execute(sql,map,new PreparedStatementCallback<Object>() {
-            @Override
-            public Object doInPreparedStatement(PreparedStatement ps)
-                    throws SQLException, DataAccessException {
-                return ps.executeUpdate();
-            }
-        });
-
+        map.put("videoID", video.getId());
+        map.put("VideoEtag", video.getVideoEtag());
+        map.put("fileName", video.getFileName());
+        map.put("videoUrl", video.getVideoURL());
+        map.put("thumbnailUrl", video.getThumbnailURL());
+        template.execute(sql,map, (PreparedStatementCallback<Object>) PreparedStatement::executeUpdate);
     }
 
     @Override
@@ -78,15 +71,7 @@ public class VideoDaoImplementation implements VideoDao {
         final String sql = "DELETE FROM videos WHERE videoID=:videoID";
         Map<String,Object> map=new HashMap<String,Object>();
         map.put("videoID", video.getId());
-        template.execute(sql,map,new PreparedStatementCallback<Object>() {
-            @Override
-            public Object doInPreparedStatement(PreparedStatement ps)
-                    throws SQLException, DataAccessException {
-                return ps.executeUpdate();
-            }
-        });
-
-
+        template.execute(sql,map, (PreparedStatementCallback<Object>) PreparedStatement::executeUpdate);
     }
 
 

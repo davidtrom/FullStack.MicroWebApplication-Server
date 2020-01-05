@@ -27,6 +27,11 @@ public class VideoController {
         return new ResponseEntity(videoServices.create(video), HttpStatus.CREATED);
     }
 
+    @GetMapping("/")
+    String hello(){
+        return "Hello World";
+    }
+
     @GetMapping("/videos/{id}")
     public ResponseEntity<Video> show(@PathVariable Long id) {
         return new ResponseEntity<>(videoServices.showOne(id), HttpStatus.OK);

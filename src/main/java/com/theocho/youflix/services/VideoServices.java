@@ -25,7 +25,6 @@ public class VideoServices {
 //    @Value("${amazonProperties.secretKey}")
 //    private String secretKey;
 
-
     public Video create(Video video) {
         return videoRepository.save(video);
     }
@@ -37,11 +36,5 @@ public class VideoServices {
     public Iterable<Video> showAll(){
         return videoRepository.findAll();
     }
-
-//    public String deleteFileFromS3Bucket(String fileUrl) {
-//        String fileName = fileUrl.substring(fileUrl.lastIndexOf("/") + 1);
-//        s3client.deleteObject(new DeleteObjectRequest(bucketName + "/", fileName));
-//        return "Successfully deleted";
-//    }
 
 }
