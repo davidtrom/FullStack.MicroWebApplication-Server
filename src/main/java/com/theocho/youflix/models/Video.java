@@ -10,20 +10,17 @@ public class Video {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private String videoEtag;
-    private String fileName;
-    private String videoURL;
-    private String thumbnailURL;
+    private String title;
+    private String url;
+    private String description;
 
     public Video(){
-
     }
 
-    public Video(String videoEtag, String fileName, String videoURL, String thumbnailURL){
-        this.videoEtag = videoEtag;
-        this.fileName = fileName;
-        this.videoURL = videoURL;
-        this.thumbnailURL = thumbnailURL;
+    public Video(String title, String description, String url){
+        this.title = title;
+        this.description = description;
+        this.url = url;
     }
 
     public Long getId() {
@@ -34,35 +31,27 @@ public class Video {
         this.id = id;
     }
 
-    public String getVideoEtag() {
-        return videoEtag;
+    public String getTitle() {
+        return title;
     }
 
-    public void setVideoEtag(String videoEtag) {
-        this.videoEtag = videoEtag;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
-    public String getFileName() {
-        return fileName;
+    public String getUrl() {
+        return url;
     }
 
-    public void setFileName(String fileName) {
-        this.fileName = fileName;
+    public void setUrl(String url) {
+        this.url = url;
     }
 
-    public String getVideoURL() {
-        return videoURL;
+    public String getDescription() {
+        return description;
     }
 
-    public void setVideoURL(String url) {
-        this.videoURL = url;
-    }
-
-    public String getThumbnailURL() {
-        return thumbnailURL;
-    }
-
-    public void setThumbnailURL(String thumbnailURL) {
-        this.thumbnailURL = thumbnailURL;
+    public void setDescription(String description) {
+        this.description = description;
     }
 }
