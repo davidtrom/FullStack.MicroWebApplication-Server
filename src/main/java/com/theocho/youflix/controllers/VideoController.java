@@ -13,7 +13,7 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.annotation.Resource;
 
 @Controller
-@RequestMapping("/")
+@RequestMapping("")
 public class VideoController {
 
     @Autowired
@@ -27,7 +27,7 @@ public class VideoController {
         this.videoServices = videoServices;
     }
 
-    @PostMapping("/makeVideo")
+    @PostMapping("/videos")
     public ResponseEntity<Video> createVideo(@RequestBody Video video) {
         return new ResponseEntity(videoServices.create(video), HttpStatus.CREATED);
     }
