@@ -6,6 +6,9 @@ import com.theocho.youflix.repositories.VideoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.io.IOException;
+import java.util.Optional;
+
 @Service
 public class VideoServices {
 
@@ -15,23 +18,17 @@ public class VideoServices {
         this.videoRepository = videoRepository;
     }
 
-//    private AmazonS3 s3client;
-//
-//    @Value("${amazonProperties.endpointUrl}")
-//    private String endpointUrl;
-//    @Value("${amazonProperties.bucketName}")
-//    private String bucketName;
-//    @Value("${amazonProperties.accessKey}")
-//    private String accessKey;
-//    @Value("${amazonProperties.secretKey}")
-//    private String secretKey;
-
     public Video create(Video video) {
         return videoRepository.save(video);
     }
 
-    public Video showOne(Long id) {
-        return videoRepository.findById(id).get();
+    public Video showOne(Long id) throws IOException {
+        Optional<Video> otherVideo = videoRepository.findById(id);
+        if (otherVideo.isPresent()) return otherVideo.get();
+        else throw new IOException();
+//        else (Exception videoDoesNotExist = new Exception())
+        // handle exceptions and pass up to controller
+        // return
     }
 
     public Iterable<Video> showAll(){

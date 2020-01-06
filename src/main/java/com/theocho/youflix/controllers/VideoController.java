@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.Resource;
+import java.io.IOException;
 
 @Controller
 @RequestMapping("")
@@ -39,12 +40,13 @@ public class VideoController {
     }
 
     @GetMapping("/videos/{id}")
-    public ResponseEntity<Video> show(@PathVariable Long id) {
+    public ResponseEntity<Video> show(@PathVariable Long id){
         return new ResponseEntity<>(videoServices.showOne(id), HttpStatus.OK);
     }
 
     @GetMapping("/videos")
     public ResponseEntity<Iterable<Video>> showAllVideos(){
+        // handle possible exception here
         return new ResponseEntity<>(videoServices.showAll(),HttpStatus.OK);
     }
 
