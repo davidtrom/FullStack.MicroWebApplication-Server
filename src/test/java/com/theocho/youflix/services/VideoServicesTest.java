@@ -1,7 +1,6 @@
 package com.theocho.youflix.services;
 
 import com.theocho.youflix.YouflixApplication;
-import com.theocho.youflix.controllers.VideoController;
 import com.theocho.youflix.models.Video;
 import com.theocho.youflix.repositories.VideoRepository;
 import org.junit.After;
@@ -9,14 +8,9 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.BDDMockito;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
 import org.mockito.junit.MockitoJUnitRunner;
-import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.ContextConfiguration;
 
 import java.io.IOException;
@@ -24,10 +18,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.*;
-
-import static org.junit.Assert.*;
 
 @RunWith(MockitoJUnitRunner.class)
 @ContextConfiguration(classes = YouflixApplication.class)
@@ -68,12 +59,7 @@ public class VideoServicesTest {
     }
 
     @Test
-    public void failing_to_create_a_video_Test(){
-        assertEquals(1,2);
-    }
-
-    @Test
-    public void show_one_video_Test() throws IOException {
+    public void show_one_video_Test(){
         // Given
         Long testVideoId = 1L;
         when(videoRepository.findById(testVideoId)).thenReturn(java.util.Optional.ofNullable(testVideo));
@@ -84,7 +70,7 @@ public class VideoServicesTest {
         Assert.assertEquals(testVideo, actualVideo);
     }
 
-    @Test (expected = IOException.class)
+    @Test (expected = NullPointerException.class)
     public void passing_invalid_id_to_show_one_video_Test() throws IOException {
         // Given
         Long otherVideoID = -1L;
@@ -93,6 +79,7 @@ public class VideoServicesTest {
         Video actualVideo = videoServices.showOne(otherVideoID);
         // Then
         verify(videoRepository, times(1)).findById(otherVideoID);
+        Assert.assertNull(actualVideo);
 //        Assert.as(IOException, actualVideo);
     }
 

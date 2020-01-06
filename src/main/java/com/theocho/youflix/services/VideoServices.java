@@ -1,6 +1,7 @@
 package com.theocho.youflix.services;
 
 
+import com.theocho.youflix.exceptions.VideoNotFoundException;
 import com.theocho.youflix.models.Video;
 import com.theocho.youflix.repositories.VideoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,10 +23,9 @@ public class VideoServices {
         return videoRepository.save(video);
     }
 
-    public Video showOne(Long id) throws IOException {
+    public Video showOne(Long id) {
         Optional<Video> otherVideo = videoRepository.findById(id);
-        if (otherVideo.isPresent()) return otherVideo.get();
-        else throw new IOException();
+        return (otherVideo.isPresent())? otherVideo.get(): null;
 //        else (Exception videoDoesNotExist = new Exception())
         // handle exceptions and pass up to controller
         // return
