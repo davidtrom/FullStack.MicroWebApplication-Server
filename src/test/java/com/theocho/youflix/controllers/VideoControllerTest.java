@@ -29,12 +29,6 @@ public class VideoControllerTest {
     }
 
     @Test
-    public void hello() {
-        String expected = "Hello World";
-        assertEquals(expected,videoController.hello());
-    }
-
-    @Test
     public void show() {
     }
 
