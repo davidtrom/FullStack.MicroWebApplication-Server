@@ -1,20 +1,27 @@
 package com.theocho.youflix.models;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.ArrayList;
 
 @Entity
+@Table
 public class Profile {
 
 
     @Id
     @GeneratedValue
-    private Integer id;
+    private Long id;
+    @Column
     private String username;
+    @Column
     private String password;
+    @Column
+    private String emailAddress;
+    @Column
     private ArrayList<Video> videos;
+
+    public Profile() {
+    }
 
     public Profile(String username, String password) {
         this.username = username;
@@ -22,11 +29,11 @@ public class Profile {
         this.videos = new ArrayList<>();
     }
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -46,4 +53,10 @@ public class Profile {
         this.password = password;
     }
 
+    public String getEmailAddress() {
+        return emailAddress;
+    }
+    public void setEmailAddress(String emailAddress) {
+        this.emailAddress = emailAddress;
+    }
 }
