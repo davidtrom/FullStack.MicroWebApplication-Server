@@ -3,12 +3,13 @@ package com.theocho.youflix.services;
 
 import com.theocho.youflix.models.Video;
 import com.theocho.youflix.repositories.VideoRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
 public class VideoServices {
-//    @Autowired
-    private VideoRepository videoRepository;
+
+    private final VideoRepository videoRepository;
 
     public VideoServices(VideoRepository videoRepository) {
         this.videoRepository = videoRepository;

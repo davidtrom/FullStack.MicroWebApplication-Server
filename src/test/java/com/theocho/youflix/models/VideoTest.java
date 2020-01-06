@@ -65,7 +65,7 @@ public class VideoTest {
                 "\"id\":null," +
                 "\"title\":\"sample Title\"," +
                 "\"description\":\"sample description\"," +
-                "\"url\":\"sample video url\"," +
+                "\"url\":\"sample video url\"" +
             "}";
         ObjectMapper jsonWriter = new ObjectMapper();
         String json = jsonWriter.writeValueAsString(testVideo);

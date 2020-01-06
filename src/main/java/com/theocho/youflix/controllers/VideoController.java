@@ -1,6 +1,7 @@
 package com.theocho.youflix.controllers;
 
 import com.theocho.youflix.models.Video;
+import com.theocho.youflix.repositories.VideoRepository;
 import com.theocho.youflix.services.VideoServices;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -19,9 +20,13 @@ import javax.annotation.Resource;
 @CrossOrigin(origins = {"http://localhost:4200", "http://localhost:8080", "http://localhost"})
 public class VideoController {
 
+    @Autowired
     private VideoServices videoServices;
     public static final Logger LOGGER = LoggerFactory.getLogger(VideoController.class);
 
+
+    @Autowired
+    private VideoRepository videoRepository;
 
     @Autowired
     public VideoController(VideoServices videoServices) {
