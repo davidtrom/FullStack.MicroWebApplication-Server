@@ -38,12 +38,7 @@ public class VideoController {
         LOGGER.info("Request recieved");
         return new ResponseEntity(videoServices.create(video), HttpStatus.CREATED);
     }
-
-    @GetMapping("/")
-    String hello(){
-        return "Hello World";
-    }
-
+    
     @GetMapping("/videos/{id}")
     public ResponseEntity<Video> show(@PathVariable Long id) {
         return new ResponseEntity<>(videoServices.showOne(id), HttpStatus.OK);
@@ -53,15 +48,5 @@ public class VideoController {
     public ResponseEntity<Iterable<Video>> showAllVideos(){
         return new ResponseEntity<>(videoServices.showAll(),HttpStatus.OK);
     }
-
-//    @PostMapping("/uploadFile")
-//    public String uploadFile(@RequestPart(value = "file") MultipartFile file) {
-//        return this.videoServices.uploadFile(file);
-//    }
-//
-//    @DeleteMapping("/deleteFile")
-//    public String deleteFile(@RequestPart(value = "url") String fileUrl) {
-//        return this.videoServices.deleteFileFromS3Bucket(fileUrl);
-//    }
 
 }
