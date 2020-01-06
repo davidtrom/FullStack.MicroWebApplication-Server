@@ -22,6 +22,7 @@ public class ProfileTest {
 
     @Before
     public void setup() {
+        id = 1L;
         username = "username";
         password = "password";
         email = "username@email.com";
@@ -52,7 +53,7 @@ public class ProfileTest {
     }
 
     @Test
-    public void testSetUsername() {
+    public void testUsername() {
         profile.setUsername("seconduser");
 
         String actual = profile.getUsername();
@@ -60,4 +61,25 @@ public class ProfileTest {
 
         Assert.assertEquals(actual, expected);
     }
+
+    @Test
+    public void testPassword() {
+        profile.setPassword("secret");
+
+        String actual = profile.getPassword();
+        String expected = "secret";
+
+        Assert.assertEquals(actual, expected);
+    }
+
+    @Test
+    public void testEmail() {
+        profile.setEmailAddress("seconduser@email.com");
+
+        String actual = profile.getEmailAddress();
+        String expected = "seconduser@email.com";
+
+        Assert.assertEquals(actual, expected);
+    }
+
 }

@@ -20,9 +20,6 @@ public class Profile {
     @Column
     private ArrayList<Video> videos;
 
-    public Profile() {
-    }
-
     public Profile(String username, String password, String emailAddress) {
         this.username = username;
         this.password = password;
