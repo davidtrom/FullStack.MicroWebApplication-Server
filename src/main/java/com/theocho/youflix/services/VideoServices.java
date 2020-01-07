@@ -15,17 +15,6 @@ public class VideoServices {
         this.videoRepository = videoRepository;
     }
 
-//    private AmazonS3 s3client;
-//
-//    @Value("${amazonProperties.endpointUrl}")
-//    private String endpointUrl;
-//    @Value("${amazonProperties.bucketName}")
-//    private String bucketName;
-//    @Value("${amazonProperties.accessKey}")
-//    private String accessKey;
-//    @Value("${amazonProperties.secretKey}")
-//    private String secretKey;
-
     public Video create(Video video) {
         return videoRepository.save(video);
     }
