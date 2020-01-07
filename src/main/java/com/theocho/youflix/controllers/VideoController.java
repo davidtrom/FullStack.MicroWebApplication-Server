@@ -13,8 +13,9 @@ import org.springframework.web.bind.annotation.*;
 
 @Controller
 @RequestMapping("")
-@CrossOrigin(origins = {"http://localhost:4200", "http://localhost:8080", "http://localhost"})
+@CrossOrigin(origins = {"https://angular-youflix-videoapp.herokuapp.com", "https://safe-springs-62086.herokuapp.com"})
 public class VideoController {
+
 
     @Autowired
     private VideoServices videoServices;
