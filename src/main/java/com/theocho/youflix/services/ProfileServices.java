@@ -15,7 +15,7 @@ import java.util.Collection;
 import java.util.Collections;
 
 @Service
-public class ProfileServices implements UserDetailsService {
+public class ProfileServices {
 
     private final ProfileRepository profileRepository;
 
@@ -23,16 +23,4 @@ public class ProfileServices implements UserDetailsService {
         this.profileRepository = profileRepository;
     }
 
-    @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        Profile profile = profileRepository.findByUserName(username).orElseThrow(() ->
-                new UsernameNotFoundException("No Profile Found" + username));
-        return new User(profile.getUsername(), profile.getPassword(),
-                true, true, true, true,
-                getAuthorities());
-    }
-
-    private Collection<? extends GrantedAuthority> getAuthorities() {
-        return Collections.singletonList(new SimpleGrantedAuthority("ROLE_USER"));
-    }
 }
