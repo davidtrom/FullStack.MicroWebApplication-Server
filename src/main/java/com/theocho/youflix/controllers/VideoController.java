@@ -1,7 +1,6 @@
 package com.theocho.youflix.controllers;
 
 import com.theocho.youflix.models.Video;
-import com.theocho.youflix.repositories.VideoRepository;
 import com.theocho.youflix.services.VideoServices;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -13,17 +12,12 @@ import org.springframework.web.bind.annotation.*;
 
 @Controller
 @RequestMapping("")
-@CrossOrigin(origins = {"https://angular-youflix-videoapp.herokuapp.com, https://safe-springs-62086.herokuapp.com, https://safe-springs-62086.herokuapp.com/videos, https://angular-youflix-videoapp.herokuapp.com/videos" })
 public class VideoController {
 
 
     @Autowired
     private VideoServices videoServices;
     public static final Logger LOGGER = LoggerFactory.getLogger(VideoController.class);
-
-
-    @Autowired
-    private VideoRepository videoRepository;
 
     @Autowired
     public VideoController(VideoServices videoServices) {
@@ -40,7 +34,7 @@ public class VideoController {
     public ResponseEntity<Video> show(@PathVariable Long id) {
         return new ResponseEntity<>(videoServices.showOne(id), HttpStatus.OK);
     }
-
+    @CrossOrigin(origins = {"https://angular-youflix-videoapp.herokuapp.com, https://safe-springs-62086.herokuapp.com, https://safe-springs-62086.herokuapp.com/videos, https://angular-youflix-videoapp.herokuapp.com/videos" })
     @GetMapping("/videos")
     public ResponseEntity<Iterable<Video>> showAllVideos(){
         return new ResponseEntity<>(videoServices.showAll(),HttpStatus.OK);
