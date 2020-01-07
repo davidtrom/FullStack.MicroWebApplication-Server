@@ -11,7 +11,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 @Controller
-@RequestMapping("")
 public class VideoController {
 
 
@@ -24,7 +23,7 @@ public class VideoController {
         this.videoServices = videoServices;
     }
 
-    @PostMapping("/videos")
+    @PostMapping("/get")
     public ResponseEntity createVideo(@RequestBody Video video) {
         LOGGER.info("Request received");
         return new ResponseEntity(videoServices.create(video), HttpStatus.CREATED);
@@ -34,7 +33,7 @@ public class VideoController {
     public ResponseEntity<Video> show(@PathVariable Long id) {
         return new ResponseEntity<>(videoServices.showOne(id), HttpStatus.OK);
     }
-    @CrossOrigin(origins = {"https://angular-youflix-videoapp.herokuapp.com, https://safe-springs-62086.herokuapp.com, https://safe-springs-62086.herokuapp.com/videos, https://angular-youflix-videoapp.herokuapp.com/videos" })
+    @CrossOrigin(origins = {"https://angular-youflix-videoapp.herokuapp.com, https://safe-springs-62086.herokuapp.com, https://safe-springs-62086.herokuapp.com/videos, https://angular-youflix-videoapp.herokuapp.com/videos"})
     @GetMapping("/videos")
     public ResponseEntity<Iterable<Video>> showAllVideos(){
         return new ResponseEntity<>(videoServices.showAll(),HttpStatus.OK);

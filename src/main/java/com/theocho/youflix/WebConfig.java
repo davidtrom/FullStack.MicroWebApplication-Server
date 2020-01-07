@@ -12,6 +12,6 @@ public class WebConfig implements WebMvcConfigurer {
     @Override
     public void addCorsMappings(CorsRegistry corsRegistry) {
         corsRegistry.addMapping("/**")
-                .allowedOrigins("*", "https://angular-youflix-videoapp.herokuapp.com", "https://safe-springs-62086.herokuapp.com/videos", "https://safe-springs-62086.herokuapp.com", "https://angular-youflix-videoapp.herokuapp.com/videos");
+                .allowedOrigins("*", "https://angular-youflix-videoapp.herokuapp.com", "https://safe-springs-62086.herokuapp.com/videos", "https://safe-springs-62086.herokuapp.com", "https://angular-youflix-videoapp.herokuapp.com/videos", "https://github.com");
     }
 }
