@@ -1,5 +1,6 @@
 package com.theocho.youflix.services;
 
+import com.theocho.youflix.exceptions.LoginException;
 import com.theocho.youflix.exceptions.NewUserException;
 import com.theocho.youflix.models.Profile;
 import com.theocho.youflix.repositories.ProfileRepository;
@@ -16,17 +17,28 @@ public class ProfileServices {
         this.profileRepository = profileRepository;
     }
 
-    public Profile createProfile(String username, String password, String email) throws NewUserException{
-        Profile searchProfile = profileRepository.findProfileByUsername(username);
+    public Profile createProfile(Profile profile) throws NewUserException{
+
+        // Searching if requested profile name already exists
+        Profile searchProfile = profileRepository.findProfileByUsername(profile.getUsername());
+
+        // If profile does exist (is not null) then send exception
         if(searchProfile != null)
             throw new NewUserException("Profile already exists");
-        if(!InfoValidation.validUsername(username))
+
+        // Checking if username is valid
+        if(!InfoValidation.validUsername(profile.getUsername()))
             throw new NewUserException("Username is invalid");
-        if(!InfoValidation.validPassword(password))
+
+        // Checking if password is valid
+        if(!InfoValidation.validPassword(profile.getPassword()))
             throw new NewUserException("Password is invalid");
-        if(!InfoValidation.validEmail(email))
+
+        // Checking if email is valid
+        if(!InfoValidation.validEmail(profile.getEmailAddress()))
             throw new NewUserException("Email is invalid");
-        return new Profile(username, password, email);
+
+        return new Profile(profile.getUsername(), profile.getPassword(), profile.getEmailAddress());
     }
 
     public Iterable<Profile> findAll() {
@@ -58,6 +70,17 @@ public class ProfileServices {
     public Boolean deleteProfile(Long id) {
         profileRepository.deleteById(id);
         return true;
+    }
+
+    public Profile login(Profile profile) throws LoginException {
+        Profile foundProfile = profileRepository.findProfileByUsername(profile.getUsername());
+
+        if(foundProfile == null)
+            throw new LoginException("Profile does not exist");
+        if(foundProfile.getPassword().equals(profile.getPassword())) {
+            return foundProfile;
+        } else
+            throw new LoginException("Password does not match");
     }
 
 
