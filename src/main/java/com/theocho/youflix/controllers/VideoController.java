@@ -12,8 +12,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 @Controller
-@RequestMapping("")
-@CrossOrigin(origins = {"https://angular-youflix-videoapp.herokuapp.com", "https://safe-springs-62086.herokuapp.com"})
+@RequestMapping("/")
+@CrossOrigin(origins = {"https://safe-springs-62086.herokuapp.com"})
 public class VideoController {
 
 
