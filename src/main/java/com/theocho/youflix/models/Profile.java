@@ -20,12 +20,10 @@ public class Profile {
     @Column
     private ArrayList<Video> videos;
 
-    public Profile() {
-    }
-
-    public Profile(String username, String password) {
+    public Profile(String username, String password, String emailAddress) {
         this.username = username;
         this.password = password;
+        this.emailAddress = emailAddress;
         this.videos = new ArrayList<>();
     }
 
@@ -56,6 +54,7 @@ public class Profile {
     public String getEmailAddress() {
         return emailAddress;
     }
+
     public void setEmailAddress(String emailAddress) {
         this.emailAddress = emailAddress;
     }
