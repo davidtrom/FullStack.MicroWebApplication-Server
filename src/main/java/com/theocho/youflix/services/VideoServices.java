@@ -3,7 +3,6 @@ package com.theocho.youflix.services;
 
 import com.theocho.youflix.models.Video;
 import com.theocho.youflix.repositories.VideoRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
