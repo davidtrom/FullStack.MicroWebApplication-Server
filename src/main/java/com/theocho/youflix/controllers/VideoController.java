@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 
 @Controller
 @RequestMapping("/")
-@CrossOrigin(origins = {"https://safe-springs-62086.herokuapp.com"})
+@CrossOrigin(origins = {"https://angular-youflix-videoapp.herokuapp.com"})
 public class VideoController {
 
 
