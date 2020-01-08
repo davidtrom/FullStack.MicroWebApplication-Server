@@ -96,7 +96,7 @@ public class VideoServicesTest {
     }
 
     private List<Video> stubVideoList(){
-        return Arrays.asList(testVideo,otherVideo);
+        return Arrays.asList(testVideo, otherVideo);
     }
 
 }
