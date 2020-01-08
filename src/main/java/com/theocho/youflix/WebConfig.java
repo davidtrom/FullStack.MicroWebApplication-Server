@@ -12,7 +12,7 @@ public class WebConfig implements WebMvcConfigurer {
     @Override
     public void addCorsMappings(CorsRegistry corsRegistry) {
         corsRegistry.addMapping("/**")
-                .allowedOrigins("*", "https://angular-youflix-videoapp.herokuapp.com", "https://safe-springs-62086.herokuapp.com/videos", "https://safe-springs-62086.herokuapp.com", "https://angular-youflix-videoapp.herokuapp.com/videos", "https://github.com","https://s3-us-east-2.amazonaws.com/zcw-group-videos/**")
+                .allowedOrigins("*", "https://angular-youflix-videoapp.herokuapp.com", "https://safe-springs-62086.herokuapp.com/videos", "https://safe-springs-62086.herokuapp.com", "https://angular-youflix-videoapp.herokuapp.com/videos", "https://github.com")
                 .allowedMethods("POST")
                 .allowedHeaders("Content-Type", "Authorization")
                 .allowCredentials(false)
