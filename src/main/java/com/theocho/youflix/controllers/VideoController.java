@@ -23,6 +23,7 @@ public class VideoController {
         this.videoServices = videoServices;
     }
 
+    @CrossOrigin(origins = {"https://angular-youflix-videoapp.herokuapp.com", "https://safe-springs-62086.herokuapp.com, https://safe-springs-62086.herokuapp.com/videos", "https://angular-youflix-videoapp.herokuapp.com/videos"  })
     @PostMapping("/videos")
     public ResponseEntity createVideo(@RequestBody Video video) {
         LOGGER.info("Request received");
