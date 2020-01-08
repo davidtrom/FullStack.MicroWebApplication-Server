@@ -33,7 +33,7 @@ public class VideoController {
     public ResponseEntity<Video> show(@PathVariable Long id) {
         return new ResponseEntity<>(videoServices.showOne(id), HttpStatus.OK);
     }
-    @CrossOrigin(origins = {"https://angular-youflix-videoapp.herokuapp.com, https://safe-springs-62086.herokuapp.com, https://safe-springs-62086.herokuapp.com/videos, https://angular-youflix-videoapp.herokuapp.com/videos");
+    @CrossOrigin(origins = {"https://angular-youflix-videoapp.herokuapp.com, https://safe-springs-62086.herokuapp.com, https://safe-springs-62086.herokuapp.com/videos, https://angular-youflix-videoapp.herokuapp.com/videos" })
     @GetMapping("/videos")
     public ResponseEntity<Iterable<Video>> showAllVideos(){
         return new ResponseEntity<>(videoServices.showAll(),HttpStatus.OK);
