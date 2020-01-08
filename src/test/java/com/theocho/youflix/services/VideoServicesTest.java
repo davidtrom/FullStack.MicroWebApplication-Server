@@ -1,7 +1,6 @@
 package com.theocho.youflix.services;
 
 import com.theocho.youflix.YouflixApplication;
-import com.theocho.youflix.controllers.VideoController;
 import com.theocho.youflix.models.Video;
 import com.theocho.youflix.repositories.VideoRepository;
 import org.junit.After;
@@ -9,39 +8,39 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.BDDMockito;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
-import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.ContextConfiguration;
 
-import static org.mockito.Mockito.doReturn;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
-import static org.junit.Assert.*;
+import static org.mockito.Mockito.*;
 
 @RunWith(MockitoJUnitRunner.class)
 @ContextConfiguration(classes = YouflixApplication.class)
 public class VideoServicesTest {
 
-    @InjectMocks
-    private VideoServices videoServices;
-
-    private VideoController videoController;
-
     @Mock
     private VideoRepository videoRepository;
 
+    @InjectMocks
+    private VideoServices videoServices;
+
     Video testVideo;
+    Video otherVideo;
 
     @Before
     public void setUp() throws Exception {
-        testVideo = new Video("sample title", "sample url", "sample description");
+        testVideo = new Video("sample title", "sample description", "sample url");
         testVideo.setId(1L);
+
+        otherVideo = new Video("other title", "other description","other url");
+        otherVideo.setId(2L);
 //        videoServices = new VideoServices(videoRepository);
-        this.videoController = new VideoController(videoServices);
     }
 
     @After
@@ -51,40 +50,53 @@ public class VideoServicesTest {
     @Test
     public void create_a_video_Test() {
         // Given
-        HttpStatus expected = HttpStatus.CREATED;
-        BDDMockito
-                .given(videoServices.create(testVideo))
-                .willReturn(testVideo);
+        when(videoRepository.save(testVideo)).thenReturn(testVideo);
         // When
-        ResponseEntity<Video> response = videoController.createVideo(testVideo);
-        HttpStatus actual = response.getStatusCode();
-        Video actualVideo = response.getBody();
+        Video actualVideo = videoServices.create(testVideo);
         // Then
-        Assert.assertEquals(expected,actual);
+        verify(videoRepository, times(1)).save(testVideo);
         Assert.assertEquals(testVideo, actualVideo);
     }
 
     @Test
-    public void show_one_video_Test() {
-        // given
+    public void show_one_video_Test(){
+        // Given
         Long testVideoId = 1L;
-        HttpStatus expectedHttpStatus = HttpStatus.OK;
-        Video expectedVideo = new Video(null, null, null);
-        BDDMockito
-                .given(videoServices.showOne(testVideoId))
-                .willReturn(expectedVideo);
-        // when
-        ResponseEntity<Video> response = videoController.show(testVideoId);
-        HttpStatus actualHttpStatus = response.getStatusCode();
-        Video actualVideo = response.getBody();
-        // then
-        Assert.assertEquals(expectedHttpStatus,actualHttpStatus);
-//        Assert.assertEquals(expectedVideo, actualVideo);
+        when(videoRepository.findById(testVideoId)).thenReturn(java.util.Optional.ofNullable(testVideo));
+        // When
+        Video actualVideo = videoServices.showOne(testVideoId);
+        // Then
+        verify(videoRepository, times(1)).findById(testVideoId);
+        Assert.assertEquals(testVideo, actualVideo);
+    }
+
+    @Test (expected = NullPointerException.class)
+    public void passing_invalid_id_to_show_one_video_Test() throws IOException {
+        // Given
+        Long otherVideoID = -1L;
+        when(videoRepository.findById(otherVideoID)).thenReturn(null);
+        // When
+        Video actualVideo = videoServices.showOne(otherVideoID);
+        // Then
+        verify(videoRepository, times(1)).findById(otherVideoID);
+        Assert.assertNull(actualVideo);
+//        Assert.as(IOException, actualVideo);
     }
 
     @Test
     public void show_all_videos_Test(){
-        Assert.assertEquals(1,2);
+        // Given
+        List<Video> expected = new ArrayList<>(Arrays.asList(testVideo, otherVideo));
+        when(videoServices.showAll()).thenReturn(stubVideoList());
+        // When
+        List<Video> actual = (List<Video>) videoServices.showAll();
+        // Then
+        verify(videoRepository, times(1)).findAll();
+        Assert.assertEquals(expected,actual);
+    }
+
+    private List<Video> stubVideoList(){
+        return Arrays.asList(testVideo, otherVideo);
     }
 
 }
