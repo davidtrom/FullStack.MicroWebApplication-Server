@@ -10,6 +10,15 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+<<<<<<< HEAD
+=======
+
+import org.springframework.web.multipart.MultipartFile;
+
+import javax.annotation.Resource;
+import java.io.IOException;
+>>>>>>> 98ed052da684d72e9bec544861987ce6c2393f4b
+
 
 @Controller
 @RequestMapping("")
@@ -30,8 +39,8 @@ public class VideoController {
     }
 
     @PostMapping("/videos")
-    public ResponseEntity<Video> createVideo(@RequestBody Video video) {
-        LOGGER.info("Request recieved");
+    public ResponseEntity createVideo(@RequestBody Video video) {
+        LOGGER.info("Request received");
         return new ResponseEntity(videoServices.create(video), HttpStatus.CREATED);
     }
     
