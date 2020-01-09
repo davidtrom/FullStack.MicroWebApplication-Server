@@ -87,7 +87,7 @@ public class VideoServicesTest {
     public void show_all_videos_Test(){
         // Given
         List<Video> expected = new ArrayList<>(Arrays.asList(testVideo, otherVideo));
-        when(videoServices.showAll()).thenReturn(stubVideoList());
+        when(videoRepository.findAll()).thenReturn(stubVideoList());
         // When
         List<Video> actual = (List<Video>) videoServices.showAll();
         // Then

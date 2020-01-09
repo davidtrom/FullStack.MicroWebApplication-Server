@@ -33,19 +33,6 @@ public class VideoTest {
     public void tearDown() throws Exception {
     }
 
-    // TODO - write a test that will check whether the auto-generated id works as expected
-    @Test
-    public void auto_generated_id_works() {
-        // ALL THE STUFF THAT HASN'T WORKED YET
-//        when(testVideo.getId()).thenReturn(5l);
-//        videoRepository.save(testVideo);
-//        assertThat(testVideo.getId().isGreaterThan(0L));
-//        Assert.assertNotNull(testVideo.getId());
-//        assertTrue(videoRepository.testVideo.getId() > 0L);
-        // reminder to finish this test
-        Assert.assertEquals(1,2);
-    }
-
     @Test
     public void testClassSignatureAnnotations(){
         Assert.assertTrue(Video.class.isAnnotationPresent(Entity.class));
