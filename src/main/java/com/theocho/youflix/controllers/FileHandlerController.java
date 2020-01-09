@@ -29,7 +29,7 @@ public class FileHandlerController {
     }
 
 
-    @DeleteMapping("removevideo")
+    @DeleteMapping("/removevideo")
     public Map<String, String> deleteFile(@RequestParam("file_name") String fileName)
     {
         this.amazonS3ClientService.deleteFileFromS3Bucket(fileName);
