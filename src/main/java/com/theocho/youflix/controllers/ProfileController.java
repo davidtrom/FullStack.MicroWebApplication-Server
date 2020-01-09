@@ -26,11 +26,11 @@ public class ProfileController {
     }
 
     @PostMapping("/profile")
-    public ResponseEntity<?> createProfile(@RequestBody Profile profile) {
+    public ResponseEntity createProfile(@RequestBody Profile profile) {
         try {
-            return new ResponseEntity<>(profileServices.createProfile(profile), HttpStatus.CREATED);
+            return new ResponseEntity(profileServices.createProfile(profile), HttpStatus.CREATED);
         } catch (NewUserException e) {
-            return new ResponseEntity<>(e.getMessage(), HttpStatus.FORBIDDEN);
+            return new ResponseEntity(e.getMessage(), HttpStatus.FORBIDDEN);
         }
     }
 
@@ -39,7 +39,7 @@ public class ProfileController {
         return new ResponseEntity<>(profileServices.findAll(), HttpStatus.FOUND);
     }
 
-    @GetMapping("/profile")
+    @GetMapping("/profile/{id}")
     public ResponseEntity<Profile> findProfileById(@RequestBody Long id) {
         return new ResponseEntity<>(profileServices.findProfileById(id), HttpStatus.FOUND);
     }
@@ -54,12 +54,14 @@ public class ProfileController {
         return new ResponseEntity<>(profileServices.deleteProfile(id), HttpStatus.GONE);
     }
 
+    // THIS METHOD IS BREAKING SPRING - WHYYYYY
     @PostMapping("/profile")
-    public ResponseEntity<?> login(@RequestBody Profile profile) {
+    public ResponseEntity login(@RequestBody Profile profile) {
         try {
-            return new ResponseEntity<>(profileServices.login(profile), HttpStatus.I_AM_A_TEAPOT);
+            return new ResponseEntity(profileServices.login(profile), HttpStatus.I_AM_A_TEAPOT);
         } catch (LoginException e) {
-            return new ResponseEntity<>(e.getMessage(), HttpStatus.FORBIDDEN);
+            return new ResponseEntity(e.getMessage(), HttpStatus.FORBIDDEN);
         }
     }
+
 }

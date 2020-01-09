@@ -40,7 +40,6 @@ public class VideoServicesTest {
 
         otherVideo = new Video("other title", "other description","other url");
         otherVideo.setId(2L);
-//        videoServices = new VideoServices(videoRepository);
     }
 
     @After
