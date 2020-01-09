@@ -10,7 +10,7 @@ import java.util.Map;
 
 @CrossOrigin(maxAge = 3600)
 @RestController
-@RequestMapping("/youflixapplication")
+@RequestMapping("/")
 public class FileHandlerController {
 
     @Autowired
@@ -27,7 +27,6 @@ public class FileHandlerController {
 
         return response;
     }
-
 
     @DeleteMapping("/removevideo")
     public Map<String, String> deleteFile(@RequestParam("file_name") String fileName)
