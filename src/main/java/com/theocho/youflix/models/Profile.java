@@ -4,12 +4,12 @@ import javax.persistence.*;
 import java.util.ArrayList;
 
 @Entity
-@Table
+@Table(name = "profiles")
 public class Profile {
 
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     @Column
     private String username;
