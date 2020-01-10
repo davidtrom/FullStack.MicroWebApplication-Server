@@ -55,7 +55,6 @@ public class ProfileController {
         return new ResponseEntity<>(profileServices.deleteProfile(id), HttpStatus.GONE);
     }
 
-    // THIS METHOD IS BREAKING SPRING - WHYYYYY
     @PostMapping("/login")
     public ResponseEntity<?> login(@RequestBody Profile profile) {
         try {
