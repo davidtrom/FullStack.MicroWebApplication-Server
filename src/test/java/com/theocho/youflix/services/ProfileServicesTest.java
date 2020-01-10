@@ -31,8 +31,8 @@ public class ProfileServicesTest {
     @InjectMocks
     private ProfileServices profileServices;
 
-    Profile testProfile;
-    Profile otherProfile;
+    private Profile testProfile;
+    private Profile otherProfile;
 
     @Before
     public void setUp() throws Exception {

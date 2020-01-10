@@ -38,7 +38,7 @@ public class ProfileServices {
         if(!InfoValidation.validEmail(profile.getEmailAddress()))
             throw new NewUserException("Email is invalid");
 
-        return new Profile(profile.getUsername(), profile.getPassword(), profile.getEmailAddress());
+        return profileRepository.save(profile);
     }
 
     public Iterable<Profile> findAll() {
@@ -51,6 +51,7 @@ public class ProfileServices {
 
     public Profile updateProfile(Long id, Profile profileInfoHolder) {
         Profile originalProfile = profileRepository.findById(id).get();
+        profileRepository.delete(originalProfile);
 
         // If the original profile username does not equal the holder's then change the username
         if(!originalProfile.getUsername().equals(profileInfoHolder.getUsername()))
@@ -64,7 +65,7 @@ public class ProfileServices {
         if(!originalProfile.getEmailAddress().equals(profileInfoHolder.getEmailAddress()))
             originalProfile.setEmailAddress(profileInfoHolder.getEmailAddress());
 
-        return originalProfile;
+        return profileRepository.save(originalProfile);
     }
 
     public Boolean deleteProfile(Long id) {
