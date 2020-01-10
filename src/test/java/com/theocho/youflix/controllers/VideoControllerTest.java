@@ -33,6 +33,7 @@ public class VideoControllerTest {
 
     @InjectMocks
     VideoController videoController;
+
     @MockBean
         VideoRepository videoRepository;
     Video testVideo;

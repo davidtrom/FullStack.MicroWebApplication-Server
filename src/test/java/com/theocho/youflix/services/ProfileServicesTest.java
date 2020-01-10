@@ -1,6 +1,7 @@
 package com.theocho.youflix.services;
 
 import com.theocho.youflix.YouflixApplication;
+import com.theocho.youflix.exceptions.LoginException;
 import com.theocho.youflix.models.Profile;
 import com.theocho.youflix.repositories.ProfileRepository;
 import org.junit.After;
@@ -88,17 +89,39 @@ public class ProfileServicesTest {
 
     @Test
     public void updateProfile() {
-        Assert.assertEquals(1,2);
+        // Given
+        when(profileRepository.findById(1L)).thenReturn(java.util.Optional.ofNullable(testProfile));
+        when(profileRepository.save(testProfile)).thenReturn(otherProfile);
+        // When
+        Profile actual = profileServices.updateProfile(1L, otherProfile);
+        // Then
+        verify(profileRepository, times(1)).findById(1L);
+        verify(profileRepository,times(1)).delete(testProfile);
+        verify(profileRepository,times(1)).save(testProfile);
+        Assert.assertEquals(otherProfile, actual);
     }
 
     @Test
     public void deleteProfile() {
-        Assert.assertEquals(1,2);
+        // Given
+        when(profileRepository.existsById(1L)).thenReturn(false);
+        // When
+        profileServices.deleteProfile(1L);
+        // Then
+        verify(profileRepository, times(1)).deleteById(1L);
+        verify(profileRepository,times(1)).existsById(1L);
+        Assert.assertTrue(profileServices.deleteProfile(1L));
     }
 
     @Test
-    public void login() {
-        Assert.assertEquals(1,2);
+    public void login() throws LoginException {
+        // Given
+        when(profileRepository.findProfileByUsername("testUser")).thenReturn(testProfile);
+        // When
+        Profile actual = profileServices.login(testProfile);
+        // Then
+        verify(profileRepository, times(1)).findProfileByUsername("testUser");
+        Assert.assertEquals(testProfile,actual);
     }
 
 }

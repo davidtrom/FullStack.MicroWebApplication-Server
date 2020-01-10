@@ -70,7 +70,7 @@ public class ProfileServices {
 
     public Boolean deleteProfile(Long id) {
         profileRepository.deleteById(id);
-        return true;
+        return !profileRepository.existsById(id);
     }
 
     public Profile login(Profile profile) throws LoginException {
